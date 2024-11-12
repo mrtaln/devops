@@ -16,14 +16,15 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18' # Projenizin kullandığı Node sürümünü ayarlayın.
+        node-version: '18'
 
     - name: Install dependencies
       run: npm install
 
     - name: Start SSH agent and add SSH key
       run: |
-        eval "$(ssh-agent -s)" # SSH ajanını başlatın
+        mkdir -p ~/.ssh  # .ssh dizinini oluştur
+        eval "$(ssh-agent -s)"
         echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -31,16 +32,16 @@ jobs:
     - name: Add server to known hosts
       run: ssh-keyscan -H ${{ env.HOST }} >> ~/.ssh/known_hosts
       env:
-        HOST: "167.71.54.125" # DigitalOcean sunucunuzun IP adresini buraya yazın
+        HOST: "167.71.54.125"
 
     - name: Deploy to DigitalOcean Server
       run: |
-        scp -r * $USER@$HOST:/root/devops # Proje dosyalarını sunucuya kopyalar
+        scp -r * $USER@$HOST:/root/devops
         ssh $USER@$HOST << 'EOF'
           cd /root/devops
           npm install
-          pm2 restart devops # veya `pm2 start app.js` gibi komutla yeniden başlatın
+          pm2 restart devops
         EOF
       env:
-        HOST: "167.71.54.125" # DigitalOcean sunucunuzun IP adresini buraya yazın
-        USER: "root"           # DigitalOcean sunucunuzdaki kullanıcı adını yazın (ör. "root")
+        HOST: "167.71.54.125"
+        USER: "root"
