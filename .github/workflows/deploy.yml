@@ -21,27 +21,16 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Start SSH agent and add SSH key
-      run: |
-        mkdir -p ~/.ssh  # .ssh dizinini oluştur
-        eval "$(ssh-agent -s)"
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Add server to known hosts
-      run: ssh-keyscan -H ${{ env.HOST }} >> ~/.ssh/known_hosts
-      env:
-        HOST: "167.71.54.125"
-
     - name: Deploy to DigitalOcean Server
+      env:
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        HOST: "167.71.54.125"
+        USER: "deployuser"
       run: |
-        scp -r * $USER@$HOST:/root/devops
-        ssh $USER@$HOST << 'EOF'
+        sudo apt-get install -y sshpass
+        ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+        sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
           cd /root/devops
           npm install
           pm2 restart devops
         EOF
-      env:
-        HOST: "167.71.54.125"
-        USER: "deployuser"
