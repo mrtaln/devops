@@ -27,8 +27,12 @@ jobs:
         HOST: "167.71.54.125"
         USER: "deployuser"
       run: |
-        sudo apt-get install -y sshpass
+        # ~/.ssh dizinini oluştur
+        mkdir -p ~/.ssh
+        # known_hosts dosyasını güvenli bir şekilde ekle
         ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+        # sshpass kullanarak bağlantı yap
+        sudo apt-get install -y sshpass
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
           cd /root/devops
           npm install
