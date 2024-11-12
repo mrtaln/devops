@@ -24,8 +24,8 @@ jobs:
     - name: Deploy to DigitalOcean Server
       env:
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-        HOST: "167.71.54.125"
-        USER: "deployuser" # deployuser olarak işlem yapıyoruz
+        HOST: "167.71.54.125"  # IP adresi doğru olmalı
+        USER: "deployuser"
       run: |
         # ~/.ssh dizinini oluştur
         mkdir -p ~/.ssh
