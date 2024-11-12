@@ -21,18 +21,26 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Deploy to DigitalOcean Server
+    - name: Start SSH agent and add SSH key
+      run: |
+        eval "$(ssh-agent -s)" # SSH ajanını başlatın
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        HOST: "167.71.54.125" # DigitalOcean sunucunuzun IP adresini buraya yazın
-        USER: "root"   # DigitalOcean sunucunuzdaki kullanıcı adını yazın (ör. "root")
 
+    - name: Add server to known hosts
+      run: ssh-keyscan -H ${{ env.HOST }} >> ~/.ssh/known_hosts
+      env:
+        HOST: "167.71.54.125" # DigitalOcean sunucunuzun IP adresini buraya yazın
+
+    - name: Deploy to DigitalOcean Server
       run: |
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-        ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
         scp -r * $USER@$HOST:/root/devops # Proje dosyalarını sunucuya kopyalar
         ssh $USER@$HOST << 'EOF'
           cd /root/devops
           npm install
           pm2 restart devops # veya `pm2 start app.js` gibi komutla yeniden başlatın
         EOF
+      env:
+        HOST: "167.71.54.125" # DigitalOcean sunucunuzun IP adresini buraya yazın
+        USER: "root"           # DigitalOcean sunucunuzdaki kullanıcı adını yazın (ör. "root")
