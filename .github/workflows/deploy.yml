@@ -25,7 +25,7 @@ jobs:
       env:
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
         HOST: "167.71.54.125"
-        USER: "deployuser"
+        USER: "deployuser" # deployuser olarak işlem yapıyoruz
       run: |
         # ~/.ssh dizinini oluştur
         mkdir -p ~/.ssh
@@ -34,7 +34,10 @@ jobs:
         # sshpass kullanarak bağlantı yap
         sudo apt-get install -y sshpass
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
-          cd /root/devops
+          # Proje dosyalarını /home/deployuser/devops dizinine kopyala
+          mkdir -p /home/deployuser/devops
+          scp -r * $USER@$HOST:/home/deployuser/devops
+          cd /home/deployuser/devops
           npm install
           pm2 restart devops
         EOF
