@@ -44,4 +44,4 @@ jobs:
         EOF
       env:
         HOST: "167.71.54.125"
-        USER: "root"
+        USER: "deployuser"
