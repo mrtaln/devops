@@ -1,0 +1,41 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16' # Projenizin kullandığı Node sürümünü ayarlayın.
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Deploy to DigitalOcean Server
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        HOST: "http://167.71.54.125/" # DigitalOcean sunucunuzun IP adresini buraya yazın
+        USER: "root"   # DigitalOcean sunucunuzdaki kullanıcı adını yazın (ör. "root")
+
+      run: |
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+        ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+        scp -r * $USER@$HOST:/root/devops # Proje dosyalarını sunucuya kopyalar
+        ssh $USER@$HOST << 'EOF'
+          cd /root/devops
+          npm install
+          pm2 restart devops # veya `pm2 start app.js` gibi komutla yeniden başlatın
+        EOF
