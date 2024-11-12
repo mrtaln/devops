@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16' # Projenizin kullandığı Node sürümünü ayarlayın.
+        node-version: '18' # Projenizin kullandığı Node sürümünü ayarlayın.
 
     - name: Install dependencies
       run: npm install
