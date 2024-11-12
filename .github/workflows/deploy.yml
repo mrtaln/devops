@@ -24,7 +24,7 @@ jobs:
     - name: Deploy to DigitalOcean Server
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        HOST: "http://167.71.54.125/" # DigitalOcean sunucunuzun IP adresini buraya yazın
+        HOST: "167.71.54.125" # DigitalOcean sunucunuzun IP adresini buraya yazın
         USER: "root"   # DigitalOcean sunucunuzdaki kullanıcı adını yazın (ör. "root")
 
       run: |
