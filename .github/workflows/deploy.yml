@@ -36,7 +36,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y sshpass
         # Proje dosyalarını sunucuya kopyala
-        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r * $USER@$HOST:/home/deployuser/devops
+        sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r * --exclude='.git' --exclude='node_modules' $USER@$HOST:/home/deployuser/devops
         # Sunucuda bağlantı kurarak npm ve pm2 işlemlerini yap
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
           cd /home/deployuser/devops
@@ -45,7 +45,7 @@ jobs:
           if pm2 list | grep -q 'devops'; then
             pm2 restart devops
           else
-            pm2 start app.js --name devops
+            pm2 start index.js --name devops
           fi
         EOF
 
