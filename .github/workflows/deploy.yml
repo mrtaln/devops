@@ -27,6 +27,7 @@ jobs:
         HOST: "167.71.54.125"  # IP adresi doğru olmalı
         USER: "deployuser"
       run: |
+        echo "HOST is set to: $HOST"
         # ~/.ssh dizinini oluştur
         mkdir -p ~/.ssh
         # known_hosts dosyasını güvenli bir şekilde ekle
