@@ -41,6 +41,11 @@ jobs:
         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
           cd /home/deployuser/devops
           npm install
-          pm2 restart devops
+          # pm2 ile devops uygulamasını başlat veya yeniden başlat
+          if pm2 list | grep -q 'devops'; then
+            pm2 restart devops
+          else
+            pm2 start app.js --name devops
+          fi
         EOF
 
