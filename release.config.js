@@ -1,20 +1,17 @@
 module.exports = {
-    branches: ['master'], // İzlenecek branch
+    branches: ['master'],
     plugins: [
-        [
-            '@semantic-release/commit-analyzer',
-            {
-              preset: 'conventionalcommits',
-              releaseRules: [
-                { type: 'major', release: 'major' },  // Major artışı
-                { type: 'minor', release: 'minor' },  // Minor artışı
-                { type: 'patch', release: 'patch' },  // Patch artışı
-              ],
-              parserOpts: {
-                noteKeywords: ['BREAKING CHANGE'],
-              },
-            },
+      [
+        '@semantic-release/commit-analyzer',
+        {
+          preset: 'conventionalcommits',
+          releaseRules: [
+            { type: 'major', release: 'major' },
+            { type: 'minor', release: 'minor' },
+            { type: 'patch', release: 'patch' },
           ],
+        },
+      ],
       '@semantic-release/release-notes-generator',
       [
         '@semantic-release/changelog',
@@ -26,9 +23,9 @@ module.exports = {
         '@semantic-release/git',
         {
           assets: ['CHANGELOG.md', 'package.json'],
-          message: 'chore(release): ${version} [skip ci]',
+          message: 'chore(release): ${nextRelease.version} [skip ci]',
         },
       ],
     ],
-    tagFormat: 'v${version}',  // Doğru formatta
+    tagFormat: 'v${nextRelease.version}',
   };
