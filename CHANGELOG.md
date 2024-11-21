@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/mrtaln/devops/compare/v2.0.3-19...v2.0.4-19) (2024-11-21)
+
+
+### Bug Fixes
+
+* update deploy.yml to decrease deploy time. ([63e20d4](https://github.com/mrtaln/devops/commit/63e20d4f0051b350df58dee19a0f34969735c591))
+
 ## [2.0.3](https://github.com/mrtaln/devops/compare/v2.0.2-19...v2.0.3-19) (2024-11-21)
 
 
