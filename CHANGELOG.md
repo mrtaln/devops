@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/mrtaln/devops/compare/v2.0.4-19...v2.0.5-19) (2024-11-21)
+
+
+### Bug Fixes
+
+* use sshpass for secure rsync in deploy.yml ([d20b71d](https://github.com/mrtaln/devops/commit/d20b71db658f1f3c71a13b0846f6dab5367d5796))
+
 ## [2.0.4](https://github.com/mrtaln/devops/compare/v2.0.3-19...v2.0.4-19) (2024-11-21)
 
 
