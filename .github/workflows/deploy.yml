@@ -36,29 +36,30 @@ jobs:
       - name: Deploy to Server
         if: success()  # Sadece release başarılı olursa çalışır
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-          HOST: "167.71.54.125"
+          HOST: "167.71.54.125"  # IP adresi doğru olmalı
           USER: "deployuser"
         run: |
-          echo "Starting deployment to $HOST"
+          echo "HOST is set to: $HOST"
+          # ~/.ssh dizinini oluştur
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+          # known_hosts dosyasını güvenli bir şekilde ekle
           ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-
-          # Değişen dosyaları server'a rsync ile gönder
-          rsync -avz --delete --exclude='node_modules' . $USER@$HOST:/home/deployuser/devops
-
-          # Server üzerinde komut çalıştır
+          # sshpass kullanarak bağlantı yap
+          sudo apt-get update
+          sudo apt-get install -y sshpass
+          # Proje dosyalarını sunucuya kopyala
+          sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r * $USER@$HOST:/home/deployuser/devops
+          # Sunucuda bağlantı kurarak npm ve pm2 işlemlerini yap
           sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
-          cd /home/deployuser/devops
-          npm install
-          # pm2 ile devops uygulamasını başlat veya yeniden başlat
-          if pm2 list | grep -q 'devops'; then
-            pm2 restart devops
-          else
-            pm2 start index.js --name devops
-          fi
+            cd /home/deployuser/devops
+            npm install
+            # pm2 ile devops uygulamasını başlat veya yeniden başlat
+            if pm2 list | grep -q 'devops'; then
+              pm2 restart devops
+            else
+              pm2 start index.js --name devops
+            fi
           EOF
 
 
