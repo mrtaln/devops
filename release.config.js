@@ -30,6 +30,12 @@ module.exports = {
           message: 'chore(release): ${version} [skip ci]',
         },
       ],
+      [
+        '@semantic-release/github',
+        {
+          assets: ['CHANGELOG.md'],
+        },
+      ],
     ],
     tagFormat: 'v${version}',
   };
