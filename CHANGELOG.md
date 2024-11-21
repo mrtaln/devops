@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/mrtaln/devops/compare/v1.1.0...v1.1.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* Minor deneme ([0cf3435](https://github.com/mrtaln/devops/commit/0cf34355aa0041102386ab9a0d12c7d6b8c5c78a))
+
 # [1.1.0](https://github.com/mrtaln/devops/compare/v1.0.0...v1.1.0) (2024-11-21)
 
 # 1.0.0 (2024-11-21)
