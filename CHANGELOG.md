@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/mrtaln/devops/compare/v2.0.1-19...v2.0.2-19) (2024-11-21)
+
+
+### Bug Fixes
+
+* version number added package.json ([42712f7](https://github.com/mrtaln/devops/commit/42712f78f22b3b1852d38d091e378c8e18f96066))
+
 ## [2.0.1](https://github.com/mrtaln/devops/compare/v2.0.0-19...v2.0.1-19) (2024-11-21)
 
 
