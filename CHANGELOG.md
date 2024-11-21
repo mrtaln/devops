@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/mrtaln/devops/compare/v2.0.6-19...v2.1.0-19) (2024-11-21)
+
+
+### Features
+
+* update response message in index.js to include 'FEAT' ([0adffc4](https://github.com/mrtaln/devops/commit/0adffc459b5b378813238634b18da2a7ed894901))
+
 ## [2.0.6](https://github.com/mrtaln/devops/compare/v2.0.5-19...v2.0.6-19) (2024-11-21)
 
 
