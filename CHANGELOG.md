@@ -1,3 +1,17 @@
+## [1.0.1](https://github.com/mrtaln/devops/compare/v1.0.0-19...v1.0.1-19) (2024-11-21)
+
+
+### Bug Fixes
+
+* git added ([daaa4f7](https://github.com/mrtaln/devops/commit/daaa4f776f4f725c14d51099e7e5149ccc5922a5))
+
+## [1.0.1](https://github.com/mrtaln/devops/compare/v1.0.0-19...v1.0.1-19) (2024-11-21)
+
+
+### Bug Fixes
+
+* git added ([daaa4f7](https://github.com/mrtaln/devops/commit/daaa4f776f4f725c14d51099e7e5149ccc5922a5))
+
 ## [1.1.1](https://github.com/mrtaln/devops/compare/v1.1.0...v1.1.1) (2024-11-21)
 
 
