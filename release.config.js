@@ -13,9 +13,9 @@ module.exports = {
         '@semantic-release/git',
         {
           assets: ['CHANGELOG.md', 'package.json'],
-          message: 'chore(release): ${version} [skip ci]',
+          message: 'chore(release): ${nextReleaseversion} [skip ci]',
         },
       ],
     ],
-    tagFormat: 'v${version}',  // Doğru formatta
+    tagFormat: 'v${nextRelease.version}',  // Doğru formatta
   };
