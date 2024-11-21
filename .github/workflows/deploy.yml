@@ -30,7 +30,7 @@ jobs:
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+        run: npx semantic-release --debug
 
       # 5. Release İşleminden Sonra Deploy Tetikle
       - name: Deploy to Server
