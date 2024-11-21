@@ -1,22 +1,8 @@
 module.exports = {
-    branches: ['master'],
+    branches: ['master'], // İzlenecek branch
     plugins: [
-      [
-        '@semantic-release/commit-analyzer',
-        {
-          preset: 'conventionalcommits',
-          releaseRules: [
-            { type: 'major', release: 'major' },
-            { type: 'minor', release: 'minor' },
-            { type: 'patch', release: 'patch' },
-            { type: 'hotfix', release: 'patch' },
-          ],
-          parserOpts: {
-            noteKeywords: ['BREAKING CHANGE'],
-          },
-        },
-      ],
-      '@semantic-release/release-notes-generator',
+      '@semantic-release/commit-analyzer',
+      '@semantic-release/release-notes-generator',  // Bu plugin, nextRelease'i oluşturur
       [
         '@semantic-release/changelog',
         {
@@ -28,12 +14,6 @@ module.exports = {
         {
           assets: ['CHANGELOG.md', 'package.json'],
           message: 'chore(release): ${nextRelease.version} [skip ci]',
-        },
-      ],
-      [
-        '@semantic-release/github',
-        {
-          assets: ['CHANGELOG.md'],
         },
       ],
     ],
