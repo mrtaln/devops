@@ -1,3 +1,11 @@
+## [2.0.1](https://github.com/mrtaln/devops/compare/v2.0.0-19...v2.0.1-19) (2024-11-21)
+
+
+### Bug Fixes
+
+* version plugin added. ([b1d7025](https://github.com/mrtaln/devops/commit/b1d7025312395b85af94067a63f6db84795acaaa))
+* version plugin removed and exec plugin added. ([4a6d53c](https://github.com/mrtaln/devops/commit/4a6d53cd869f321c8eb71d9d7075b08f7a13b078))
+
 # [2.0.0](https://github.com/mrtaln/devops/compare/v1.1.2-19...v2.0.0-19) (2024-11-21)
 
 ## [1.1.2](https://github.com/mrtaln/devops/compare/v1.1.1-19...v1.1.2-19) (2024-11-21)
