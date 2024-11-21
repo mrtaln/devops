@@ -1,3 +1,10 @@
+## [2.0.6](https://github.com/mrtaln/devops/compare/v2.0.5-19...v2.0.6-19) (2024-11-21)
+
+
+### Bug Fixes
+
+* update response message in index.js for development purposes ([99dde1a](https://github.com/mrtaln/devops/commit/99dde1a56141f30a2d7409c03f6deec45655f687))
+
 ## [2.0.5](https://github.com/mrtaln/devops/compare/v2.0.4-19...v2.0.5-19) (2024-11-21)
 
 
