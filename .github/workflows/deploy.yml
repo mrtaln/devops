@@ -47,13 +47,14 @@ jobs:
           ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
           # sshpass kullanarak bağlantı yap
           sudo apt-get update
-          sudo apt-get install -y sshpass
-          # Proje dosyalarını sunucuya kopyala
-          sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r * $USER@$HOST:/home/deployuser/devops
+          sudo apt-get install -y sshpass rsync  # rsync'yi yükle
+          # Proje dosyalarını sunucuya rsync ile kopyala
+          rsync -avz --exclude 'node_modules' --exclude '.git' ./ $USER@$HOST:/home/deployuser/devops
           # Sunucuda bağlantı kurarak npm ve pm2 işlemlerini yap
           sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
             cd /home/deployuser/devops
-            npm install
+            # Yalnızca eksik veya yeni bağımlılıkları yükle
+            npm install --production
             # pm2 ile devops uygulamasını başlat veya yeniden başlat
             if pm2 list | grep -q 'devops'; then
               pm2 restart devops
