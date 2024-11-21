@@ -19,6 +19,13 @@ module.exports = {
           changelogFile: 'CHANGELOG.md',
         },
       ],
+      [
+        '@semantic-release/git',
+        {
+          assets: ['CHANGELOG.md', 'package.json'],
+          message: 'chore(release): ${version} [skip ci]',
+        },
+      ],
     ],
     tagFormat: 'v${version}-19',
   };
