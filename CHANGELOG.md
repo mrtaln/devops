@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/mrtaln/devops/compare/v1.0.1-19...v1.1.0-19) (2024-11-21)
+
+
+### Features
+
+* Deneme ([899b0c5](https://github.com/mrtaln/devops/commit/899b0c5d4b9b521e0e3ff955cd1639e46cf2eebd))
+
 ## [1.0.1](https://github.com/mrtaln/devops/compare/v1.0.0-19...v1.0.1-19) (2024-11-21)
 
 
