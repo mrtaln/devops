@@ -9,6 +9,10 @@ module.exports = {
             { type: 'major', release: 'major' },
             { type: 'minor', release: 'minor' },
             { type: 'patch', release: 'patch' },
+            {
+              "scope": "BREAKING CHANGE",
+              "release": "major"
+            }
           ],
         },
       ],
