@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/mrtaln/devops/compare/v1.1.0-19...v1.1.1-19) (2024-11-21)
+
+
+### Bug Fixes
+
+* version number ([62f0d39](https://github.com/mrtaln/devops/commit/62f0d39aa533aa6e1bcb6e2cc75d8957410e496c))
+
 # [1.1.0](https://github.com/mrtaln/devops/compare/v1.0.1-19...v1.1.0-19) (2024-11-21)
 
 
