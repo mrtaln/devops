@@ -20,16 +20,16 @@ module.exports = {
         },
       ],
       [
+        '@semantic-release/exec',
+        {
+          prepareCmd: 'npm version ${nextRelease.version}-19 --no-git-tag-version',
+        },
+      ],
+      [
         '@semantic-release/git',
         {
           assets: ['CHANGELOG.md', 'package.json'],
           message: 'Release: v${nextRelease.version}-19',
-        },
-      ],
-      [
-        '@semantic-release/exec',
-        {
-          prepareCmd: 'npm version ${nextRelease.version} --no-git-tag-version',
         },
       ],
     ],
