@@ -2,7 +2,7 @@ module.exports = {
     branches: ['master'], // İzlenecek branch
     plugins: [
       '@semantic-release/commit-analyzer',
-      '@semantic-release/release-notes-generator',  // Bu plugin, nextRelease'i oluşturur
+      '@semantic-release/release-notes-generator',
       [
         '@semantic-release/changelog',
         {
@@ -13,9 +13,9 @@ module.exports = {
         '@semantic-release/git',
         {
           assets: ['CHANGELOG.md', 'package.json'],
-          message: 'chore(release): ${nextRelease.version} [skip ci]',
+          message: 'chore(release): ${version} [skip ci]',
         },
       ],
     ],
-    tagFormat: 'v${nextRelease.version}',
+    tagFormat: 'v${version}',  // Doğru formatta
   };
