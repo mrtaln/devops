@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/mrtaln/devops/compare/v3.0.0-19...v4.0.0-19) (2024-11-21)
+
+
+### Features
+
+* add scope for ([15955b6](https://github.com/mrtaln/devops/commit/15955b67638b61bf8bf0daa91312cfb912665f1b))
+
+
+### BREAKING CHANGES
+
+* to release.config.js
+
 # [3.0.0](https://github.com/mrtaln/devops/compare/v2.2.0-19...v3.0.0-19) (2024-11-21)
 
 # [2.2.0](https://github.com/mrtaln/devops/compare/v2.1.1-19...v2.2.0-19) (2024-11-21)
