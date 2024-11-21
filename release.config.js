@@ -26,6 +26,7 @@ module.exports = {
           message: 'Release: v${nextRelease.version}-19',
         },
       ],
+      '@semantic-release/version',
     ],
     tagFormat: 'v${version}-19',
   };
