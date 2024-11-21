@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/mrtaln/devops/compare/v2.0.2-19...v2.0.3-19) (2024-11-21)
+
+
+### Bug Fixes
+
+* deploy.yml fixed. ([a366286](https://github.com/mrtaln/devops/commit/a366286d46229ee28394567734ec3e5e06d5aedd))
+
 ## [2.0.2](https://github.com/mrtaln/devops/compare/v2.0.1-19...v2.0.2-19) (2024-11-21)
 
 
