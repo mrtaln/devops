@@ -1,3 +1,5 @@
+# [2.2.0](https://github.com/mrtaln/devops/compare/v2.1.1-19...v2.2.0-19) (2024-11-21)
+
 ## [2.1.1](https://github.com/mrtaln/devops/compare/v2.1.0-19...v2.1.1-19) (2024-11-21)
 
 # [2.1.0](https://github.com/mrtaln/devops/compare/v2.0.6-19...v2.1.0-19) (2024-11-21)
