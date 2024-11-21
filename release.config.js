@@ -26,7 +26,12 @@ module.exports = {
           message: 'Release: v${nextRelease.version}-19',
         },
       ],
-      '@semantic-release/version',
+      [
+        '@semantic-release/exec',
+        {
+          prepareCmd: 'npm version ${nextRelease.version} --no-git-tag-version',
+        },
+      ],
     ],
     tagFormat: 'v${version}-19',
   };
