@@ -1,4 +1,4 @@
-name: Deploy to DigitalOcean
+name: Release and Deploy
 
 on:
   push:
@@ -6,6 +6,27 @@ on:
       - master
 
 jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
+
   deploy:
     runs-on: ubuntu-latest
 
@@ -48,4 +69,56 @@ jobs:
             pm2 start index.js --name devops
           fi
         EOF
+
+
+# name: Deploy to DigitalOcean
+
+# on:
+#   push:
+#     branches:
+#       - master
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v4
+
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v4
+#       with:
+#         node-version: '18'
+
+#     - name: Install dependencies
+#       run: npm install
+
+#     - name: Deploy to DigitalOcean Server
+#       env:
+#         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+#         HOST: "167.71.54.125"  # IP adresi doğru olmalı
+#         USER: "deployuser"
+#       run: |
+#         echo "HOST is set to: $HOST"
+#         # ~/.ssh dizinini oluştur
+#         mkdir -p ~/.ssh
+#         # known_hosts dosyasını güvenli bir şekilde ekle
+#         ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+#         # sshpass kullanarak bağlantı yap
+#         sudo apt-get update
+#         sudo apt-get install -y sshpass
+#         # Proje dosyalarını sunucuya kopyala
+#         sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r * $USER@$HOST:/home/deployuser/devops
+#         # Sunucuda bağlantı kurarak npm ve pm2 işlemlerini yap
+#         sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $USER@$HOST << 'EOF'
+#           cd /home/deployuser/devops
+#           npm install
+#           # pm2 ile devops uygulamasını başlat veya yeniden başlat
+#           if pm2 list | grep -q 'devops'; then
+#             pm2 restart devops
+#           else
+#             pm2 start index.js --name devops
+#           fi
+#         EOF
 
